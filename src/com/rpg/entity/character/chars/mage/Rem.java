@@ -3,16 +3,17 @@ package com.rpg.entity.character.chars.mage;
 import com.rpg.entity.character.Character;
 import com.rpg.entity.character.chars.Mage;
 
-
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Megumin extends Mage {
+public class Rem extends Mage {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Random RANDOM = new Random();
 
-    public Megumin() {
-        super(0, 400, "Megumin", 50, 5, 5, Gender.Female, 0, 0, charElement.Fire);
+    public Rem() {
+        super(0, 500, "Rem", 35, 10, 50, Gender.Female, 0, 0, charElement.Water);
     }
 
     // AttackMenu
@@ -49,30 +50,35 @@ public class Megumin extends Mage {
 
     // AttackMethod
     public void rollAttack(Character enemy) throws InterruptedException {
-        attackRollBuilder(new String[][]{{"1-6", "Basic Attack", "Just Attack Damage"},
-                {"7-9", "Firewall", "0.5 * Attack + Enemy get suspend for 1 Round and can't attack"},
-                {"10", "Fireball", "Normal Attack + 1.2x more Damage for every round because of the fire damage"}});
+        attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Just Attack Damage"},
+                {"8", "Morningstar-Spin", "Randomly do 1-3 Spins (Normal damage)"},
+                {"9-10", "Maid Dress-Up", "Defense + 2.5 & Int + 5 (Attack Damage goes on)"}});
 
         int dice = diceRoll();
         System.out.println("You rolled a " + dice + "\n");
 
         switch (dice) {
-            case 1, 2, 3, 4, 5, 6 -> {
+            case 1, 2, 3, 4, 5, 6, 7 -> {
                 attackAnnouncement("Basic Attack");
                 basicAttack(enemy);
                 changeMana();
             }
-            case 7, 8, 9 -> {
-                attackAnnouncement("Firewall");
-                basicAttack(enemy, 0.5);
-                enemy.setSuspend(getSuspend() + 1);
-                System.out.println("Enemy got suspended for 1 Round");
-                changeMana();
+            case 8 -> {
+                attackAnnouncement("Morningstar-Spin");
+
+                int value = RANDOM.nextInt(1, 3 + 1);
+                for (int i = 1; i <= value; i++) {
+                    basicAttack(enemy);
+                    System.out.println("Hitted (" + i + ")");
+                    changeMana();
+                    TimeUnit.SECONDS.sleep(1);
+                }
+                System.out.println("Attack done! Connected attacks: " + value);
             }
-            case 10 -> {
-                attackAnnouncement("Fireball");
-                setATK(getATK() * 1.2);
-                basicAttack(enemy);
+            case 9, 10 -> {
+                attackAnnouncement("Maid Dress-Up");
+                setDEF(getDEF() + 2.5);
+                setIntelligence(getIntelligence() + 5);
                 changeMana();
             }
         }

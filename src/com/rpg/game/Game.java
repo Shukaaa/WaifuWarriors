@@ -10,8 +10,11 @@ public class Game {
         // Add NPCs
         IceFish icefish = new IceFish();
         BobTheBird bobthebird = new BobTheBird();
-        DirtBlock dirtblock = new DirtBlock()
-;
-        fight.fight(bobthebird);
+        DirtBlock dirtblock = new DirtBlock();
+        PikachuMitEisenschwert pikachu = new PikachuMitEisenschwert();
+        WatergunWale watergunwale = new WatergunWale();
+        ClashRoyaleMage clashroyalemage = new ClashRoyaleMage();
+
+        fight.fight(clashroyalemage);
     }
 }

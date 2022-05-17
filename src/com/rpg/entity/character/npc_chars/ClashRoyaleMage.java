@@ -3,17 +3,17 @@ package com.rpg.entity.character.npc_chars;
 import com.rpg.entity.character.Character;
 import com.rpg.entity.character.NPC;
 
-public class DirtBlock extends NPC {
-    public DirtBlock() {
-        super(0, 300, "Dirt Block", 25, 10, 0, 0, charElement.Earth);
+public class ClashRoyaleMage extends NPC {
+    public ClashRoyaleMage() {
+        super(0, 450, "Clash Royale Mage", 50, 5, 5, 0, charElement.Fire);
     }
 
     public void attack(Character enemy) throws InterruptedException {
         if (suspendCheck()) return;
 
         attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
-                {"8-9", "Dirty Dirt Shot", "Does a lot of damage (x1.25)"},
-                {"10", "Trapped in a dirt house !!!", "You get suspended for 2 Rounds, damage -> x0.75"}});
+                {"8-9", "Fireball Upgrade", "Damage * 1.1"},
+                {"10", "Doubled Fireball", "Does x2 damage"}});
 
         int dice = diceRoll();
         System.out.println(getName() + "rolled a " + dice + "\n");
@@ -24,14 +24,13 @@ public class DirtBlock extends NPC {
                 basicAttack(enemy);
             }
             case 8, 9 -> {
-                attackAnnouncement("Dirty Dirt Shot");
-                basicAttack(enemy, 1.25);
+                attackAnnouncement("Fireball Upgrade");
+                setATK(getATK() * 1.1);
+                basicAttack(enemy);
             }
             case 10 -> {
-                attackAnnouncement("Heavy Attack");
-                basicAttack(enemy, 0.75);
-                enemy.setSuspend(getSuspend() + 2);
-                System.out.println("You got suspended for 2 Rounds");
+                attackAnnouncement("Doubled Fireball");
+                basicAttack(enemy, 2);
             }
         }
     }

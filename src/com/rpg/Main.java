@@ -1,7 +1,5 @@
 package com.rpg;
 
-import com.rpg.entity.character.PlayerChar.Gender;
-import com.rpg.entity.character.chars.mage.Megumin;
 import com.rpg.game.Game;
 
 public class Main {

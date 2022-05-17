@@ -2,9 +2,7 @@ package com.rpg.entity.character;
 
 import com.rpg.entity.Entity;
 
-import java.util.Objects;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Character extends Entity {
@@ -17,6 +15,8 @@ public class Character extends Entity {
     private int intelligence;
     private int suspend;
     private double lastATK;
+    private double lastDEF;
+    private int lastIntelligence;
     public enum charElement {
         Fire,
         Ice,
@@ -32,6 +32,8 @@ public class Character extends Entity {
         this.name = name;
         this.ATK = ATK;
         this.DEF = DEF;
+        this.lastDEF = DEF;
+        this.lastIntelligence = intelligence;
         this.intelligence = intelligence;
         this.suspend = suspend;
         this.element = element;
@@ -232,5 +234,21 @@ public class Character extends Entity {
 
     public void setElement(charElement element) {
         this.element = element;
+    }
+
+    public double getLastDEF() {
+        return lastDEF;
+    }
+
+    public void setLastDEF(double lastDEF) {
+        this.lastDEF = lastDEF;
+    }
+
+    public int getLastIntelligence() {
+        return lastIntelligence;
+    }
+
+    public void setLastIntelligence(int lastIntelligence) {
+        this.lastIntelligence = lastIntelligence;
     }
 }

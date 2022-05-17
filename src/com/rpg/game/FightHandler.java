@@ -5,9 +5,8 @@ import com.rpg.entity.character.Character.charElement;
 import com.rpg.entity.character.NPC;
 import com.rpg.entity.character.PlayerChar;
 import com.rpg.entity.character.chars.mage.Megumin;
-import com.rpg.entity.character.npc_chars.BobTheBird;
-import com.rpg.entity.character.npc_chars.DirtBlock;
-import com.rpg.entity.character.npc_chars.IceFish;
+import com.rpg.entity.character.chars.mage.Rem;
+import com.rpg.entity.character.npc_chars.*;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -44,7 +43,9 @@ public class FightHandler {
                                 wrongInput2 = false;
                             }
                             case "rem" -> {
-
+                                Rem rem = new Rem();
+                                startFight(enemy, rem);
+                                wrongInput2 = false;
                             }
                             case "zerotwo" -> {
 
@@ -149,6 +150,8 @@ public class FightHandler {
                 System.out.println(enemy.getName() + " has won the battle :( you lost");
             }
             attacker.setATK(attacker.getAtkBefore());
+            attacker.setDEF(attacker.getLastDEF());
+            attacker.setIntelligence(attacker.getIntelligence());
         }
     }
 
@@ -165,6 +168,15 @@ public class FightHandler {
         } else if (enemy instanceof DirtBlock) {
             ((DirtBlock) enemy).attack(attacker);
             return false;
+        } else if (enemy instanceof PikachuMitEisenschwert) {
+            ((PikachuMitEisenschwert) enemy).attack(attacker);
+            return false;
+        } else if (enemy instanceof WatergunWale) {
+            ((WatergunWale) enemy).attack(attacker);
+            return false;
+        } else if (enemy instanceof ClashRoyaleMage) {
+            ((ClashRoyaleMage) enemy).attack(attacker);
+            return false;
         }
         return true;
     }
@@ -175,6 +187,9 @@ public class FightHandler {
             return true;
         } else if (attacker instanceof Megumin) {
             ((Megumin) attacker).attack(enemy);
+            return false;
+        } else if (attacker instanceof Rem) {
+            ((Rem) attacker).attack(enemy);
             return false;
         }
         return true;
