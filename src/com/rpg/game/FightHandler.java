@@ -5,6 +5,8 @@ import com.rpg.entity.character.Character.charElement;
 import com.rpg.entity.character.NPC;
 import com.rpg.entity.character.PlayerChar;
 import com.rpg.entity.character.chars.mage.Megumin;
+import com.rpg.entity.character.npc_chars.BobTheBird;
+import com.rpg.entity.character.npc_chars.DirtBlock;
 import com.rpg.entity.character.npc_chars.IceFish;
 
 import java.util.Scanner;
@@ -76,9 +78,6 @@ public class FightHandler {
     }
 
     public void elementHelper(NPC enemy) throws InterruptedException {
-        System.out.println("Your enemy has the element: " + enemy.getElement());
-        TimeUnit.SECONDS.sleep(2);
-
         charElement goodElement = null;
         charElement badElement = null;
 
@@ -118,11 +117,11 @@ public class FightHandler {
     }
 
     public void startFight(NPC enemy, PlayerChar attacker) throws InterruptedException {
-        System.out.println("The Character who starts get randomized.");
+        System.out.println("The Character who starts gets randomized.");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("The Character who starts get randomized..");
+        System.out.println("The Character who starts gets randomized..");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("The Character who starts get randomized...");
+        System.out.println("The Character who starts gets randomized...");
         TimeUnit.SECONDS.sleep(1);
 
         Character startChar = enemy;
@@ -144,15 +143,27 @@ public class FightHandler {
                 if (fightLoopChar(enemy, attacker)) break;
                 if (fightLoopEnemy(enemy, attacker)) break;
             }
+            if (enemy.getHP() <= 0) {
+                System.out.println(attacker.getName() + " has won the battle!");
+            } else if (attacker.getHP() <= 0){
+                System.out.println(enemy.getName() + " has won the battle :( you lost");
+            }
+            attacker.setATK(attacker.getAtkBefore());
         }
     }
 
     private boolean fightLoopEnemy(NPC enemy, PlayerChar attacker) throws InterruptedException {
         if (enemy.getHP() <= 0) {
-            System.out.println(enemy.getName() + "is dead. You won!");
+            System.out.println(enemy.getName() + " is dead.");
             return true;
         } else if (enemy instanceof IceFish) {
             ((IceFish) enemy).attack(attacker);
+            return false;
+        } else if (enemy instanceof BobTheBird) {
+            ((BobTheBird) enemy).attack(attacker);
+            return false;
+        } else if (enemy instanceof DirtBlock) {
+            ((DirtBlock) enemy).attack(attacker);
             return false;
         }
         return true;
@@ -160,7 +171,7 @@ public class FightHandler {
 
     private boolean fightLoopChar(NPC enemy, PlayerChar attacker) throws InterruptedException {
         if (attacker.getHP() <= 0) {
-            System.out.println(attacker.getName() + "is dead. You lose!");
+            System.out.println(attacker.getName() + "is dead.");
             return true;
         } else if (attacker instanceof Megumin) {
             ((Megumin) attacker).attack(enemy);

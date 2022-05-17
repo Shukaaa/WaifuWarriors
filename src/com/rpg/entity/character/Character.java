@@ -59,11 +59,11 @@ public class Character extends Entity {
         switch (value) {
             case 8, 9 -> {
                 critValue = 1.25;
-                System.out.println("[Fight Log]: ### Small Crit hitted! + 1.25x ###");
+                System.out.println("[Fight Log]: ### Small Crit hit! + 1.25x ###");
             }
             case 10 -> {
                 critValue = 1.5;
-                System.out.println("[Fight Log]: ### Big Crit hitted! + 1.5x ###");
+                System.out.println("[Fight Log]: ### Big Crit hit! + 1.5x ###");
             }
             default -> {
             }
@@ -135,7 +135,7 @@ public class Character extends Entity {
         double ATK = ATK(enemy) * atkModifier;
         double Crit = Crit();
 
-        ATK = ATK * Crit;
+        ATK = Math.round(ATK * Crit);
 
         double healtBefore = enemy.getHP();
         enemy.setHP(enemy.getHP() - ATK);
@@ -163,7 +163,7 @@ public class Character extends Entity {
 
     public boolean suspendCheck() {
         if (getSuspend() > 0) {
-            System.out.println(getName() + " isn't able to attack because " + getName() + " got suspended for " + getSuspend() + "x round.");
+            System.out.println(getName() + " isn't able to attack because " + getName() + " got suspended for " + getSuspend() + "x round.\n");
             setSuspend(getSuspend() - 1);
             return true;
         }
@@ -178,6 +178,12 @@ public class Character extends Entity {
         TimeUnit.SECONDS.sleep(2);
         System.out.println("[Fight Log]: " + defenderName + " had " + defenderHealthBefore + "HP, now: " + defenderHealthAfter + "HP\n");
         TimeUnit.SECONDS.sleep(2);
+    }
+
+    public void attackAnnouncement(String attackName) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("[Fight Log]: " + getName() + " attacking with " + attackName);
+        TimeUnit.SECONDS.sleep(1);
     }
 
     public String getName() {

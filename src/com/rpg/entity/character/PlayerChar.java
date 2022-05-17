@@ -7,16 +7,18 @@ import java.util.concurrent.TimeUnit;
 public class PlayerChar extends Character{
 
     private Gender Gender;
-
-    public PlayerChar(int posX, double HP, String name, double ATK, double DEF, int intelligence, Gender Gender, int suspend, charElement element) {
-        super(posX, HP, name, ATK, DEF, intelligence, suspend, element);
-        this.Gender = Gender;
-    }
-
     public enum Gender {
         Male,
         Female,
         Undefined
+    }
+
+    private double atkBefore;
+
+    public PlayerChar(int posX, double HP, String name, double ATK, double DEF, int intelligence, Gender Gender, int suspend, charElement element) {
+        super(posX, HP, name, ATK, DEF, intelligence, suspend, element);
+        this.Gender = Gender;
+        this.atkBefore = ATK;
     }
 
     public void fightMenuBuilder(PlayerChar.Gender gender, int manaStaminaValue, int ultCost, String manaOrStamina) {
@@ -29,17 +31,15 @@ public class PlayerChar extends Character{
     }
 
     // DialogesBuilder
-    public void attackRollBuilder(String attackRolls1, String attackName1, String attackDesc1,
-                                  String attackRolls2, String attackName2, String attackDesc2,
-                                  String attackRolls3, String attackName3, String attackDesc3) throws InterruptedException {
+    public void attackRollBuilder(String[][] attacks) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
 
         boolean inputWrong = true;
         do {
             System.out.println("Type in [start] to roll your Attack\n" +
-                    attackRolls1 + " = " + attackName1 + "  |  " + attackDesc1 + "\n" +
-                    attackRolls2 + " = " + attackName2 + "  |  " + attackDesc2 + "\n" +
-                    attackRolls3 + " = " + attackName3 + "  |  " + attackDesc3 + "\n");
+                    attacks[0][0] + " = " + attacks[0][1] + "  |  " + attacks[0][2] + "\n" +
+                    attacks[1][0] + " = " + attacks[1][1] + "  |  " + attacks[1][2] + "\n" +
+                    attacks[2][0] + " = " + attacks[2][1] + "  |  " + attacks[2][2] + "\n");
 
             String input = scanner.nextLine().toLowerCase();
 
@@ -67,5 +67,13 @@ public class PlayerChar extends Character{
 
     public void setGender(Gender gender) {
         Gender = gender;
+    }
+
+    public double getAtkBefore() {
+        return atkBefore;
+    }
+
+    public void setAtkBefore(double atkBefore) {
+        this.atkBefore = atkBefore;
     }
 }

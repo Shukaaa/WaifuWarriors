@@ -3,17 +3,17 @@ package com.rpg.entity.character.npc_chars;
 import com.rpg.entity.character.Character;
 import com.rpg.entity.character.NPC;
 
-public class IceFish extends NPC {
-    public IceFish() {
-        super(0, 400, "Ice Fish", 20, 2, 2, 0, charElement.Ice);
+public class BobTheBird extends NPC {
+    public BobTheBird() {
+        super(0, 200, "Bob the Bird", 50, 0, 0, 0, charElement.Wind);
     }
 
     public void attack(Character enemy) throws InterruptedException {
         if (suspendCheck()) return;
 
-            attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
-                    {"8-9", "Freeze", "Freezes you for 1 Round + x0.5 Damage"},
-                    {"10", "Heavy Attack", "Does a lot of damage"}});
+        attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
+                {"8-9", "Flying Birdman", "Does a lot of damage (x1.25)"},
+                {"10", "Heavy Attack", "Does a lot of damage (x1.5)"}});
 
         int dice = diceRoll();
         System.out.println(getName() + "rolled a " + dice + "\n");
@@ -24,10 +24,8 @@ public class IceFish extends NPC {
                 basicAttack(enemy);
             }
             case 8, 9 -> {
-                attackAnnouncement("Freeze");
-                basicAttack(enemy, 0.5);
-                enemy.setSuspend(getSuspend() + 1);
-                System.out.println("You got suspended for 1 Round");
+                attackAnnouncement("Flying Birdman");
+                basicAttack(enemy, 1.25);
             }
             case 10 -> {
                 attackAnnouncement("Heavy Attack");

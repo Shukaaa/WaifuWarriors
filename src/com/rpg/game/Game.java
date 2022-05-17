@@ -1,13 +1,17 @@
 package com.rpg.game;
 
-import com.rpg.entity.character.npc_chars.IceFish;
+import com.rpg.entity.character.npc_chars.*;
 
 public class Game {
     public void startGame() throws InterruptedException {
-        FightHandler fight1 = new FightHandler();
+        // FightHandler
+        FightHandler fight = new FightHandler();
 
+        // Add NPCs
         IceFish icefish = new IceFish();
-
-        fight1.fight(icefish);
+        BobTheBird bobthebird = new BobTheBird();
+        DirtBlock dirtblock = new DirtBlock()
+;
+        fight.fight(bobthebird);
     }
 }

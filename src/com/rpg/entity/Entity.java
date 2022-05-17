@@ -33,6 +33,6 @@ public class Entity {
     }
 
     public void setHP(double HP) {
-        this.HP = HP;
+        this.HP = Math.max(HP, 0);
     }
 }
