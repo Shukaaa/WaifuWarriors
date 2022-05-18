@@ -79,6 +79,7 @@ public class Rem extends Mage {
                 attackAnnouncement("Maid Dress-Up");
                 setDEF(getDEF() + 2.5);
                 setIntelligence(getIntelligence() + 5);
+                basicAttack(enemy);
                 changeMana();
             }
         }

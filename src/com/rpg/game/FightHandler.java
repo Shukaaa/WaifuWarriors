@@ -108,8 +108,8 @@ public class FightHandler {
                 badElement = charElement.Thunder;
             }
         }
-        System.out.println("The best element you can choose is " + badElement + " (x1.5)\n" +
-                "and " + goodElement + " is bad (x0.5)\n");
+        System.out.println("The best element you can choose is " + badElement + " (x1.25)\n" +
+                "and " + goodElement + " is bad (x0.75)\n");
         TimeUnit.SECONDS.sleep(3);
     }
 

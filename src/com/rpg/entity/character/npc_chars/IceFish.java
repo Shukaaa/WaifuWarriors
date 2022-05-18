@@ -5,7 +5,7 @@ import com.rpg.entity.character.NPC;
 
 public class IceFish extends NPC {
     public IceFish() {
-        super(0, 400, "Ice Fish", 20, 2, 2, 0, charElement.Ice);
+        super(0, 440, "Ice Fish", 25, 10, 5, 0, charElement.Ice);
     }
 
     public void attack(Character enemy) throws InterruptedException {

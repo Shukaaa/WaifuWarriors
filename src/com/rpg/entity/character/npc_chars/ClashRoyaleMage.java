@@ -5,7 +5,7 @@ import com.rpg.entity.character.NPC;
 
 public class ClashRoyaleMage extends NPC {
     public ClashRoyaleMage() {
-        super(0, 450, "Clash Royale Mage", 50, 5, 5, 0, charElement.Fire);
+        super(0, 450, "Clash Royale Mage", 50, 5, 15, 0, charElement.Fire);
     }
 
     public void attack(Character enemy) throws InterruptedException {

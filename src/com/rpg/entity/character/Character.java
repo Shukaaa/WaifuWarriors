@@ -41,10 +41,13 @@ public class Character extends Entity {
 
     // AttackCalc Functions
     public double ATK(Character enemy) {
-        double ATK = getATK() - enemy.getDEF();
+        double ATK = (getATK() - enemy.getDEF()) * elementReactions(enemy);
         if (enemy.intelligence > getIntelligence()) {
             double intValue = enemy.intelligence - getIntelligence();
             ATK = ATK - (intValue / 10);
+        } else if(getIntelligence() > enemy.intelligence) {
+            double intValue = getIntelligence() - enemy.intelligence;
+            ATK = ATK + (intValue / 10);
         }
         if (ATK <= 0) {
             ATK = 1;
@@ -78,48 +81,48 @@ public class Character extends Entity {
         switch (getElement()) {
             case Fire -> {
                 switch (enemy.getElement()) {
-                    case Ice -> elementValue = 1.5;
-                    case Water -> elementValue = 0.5;
+                    case Ice -> elementValue = 1.25;
+                    case Water -> elementValue = 0.75;
                     default -> {
                     }
                 }
             }
             case Ice -> {
                 switch (enemy.getElement()) {
-                    case Wind -> elementValue = 1.5;
-                    case Fire -> elementValue = 0.5;
+                    case Wind -> elementValue = 1.25;
+                    case Fire -> elementValue = 0.75;
                     default -> {
                     }
                 }
             }
             case Wind -> {
                 switch (enemy.getElement()) {
-                    case Earth -> elementValue = 1.5;
-                    case Ice -> elementValue = 0.5;
+                    case Earth -> elementValue = 1.25;
+                    case Ice -> elementValue = 0.75;
                     default -> {
                     }
                 }
             }
             case Earth -> {
                 switch (enemy.getElement()) {
-                    case Thunder -> elementValue = 1.5;
-                    case Wind -> elementValue = 0.5;
+                    case Thunder -> elementValue = 1.25;
+                    case Wind -> elementValue = 0.75;
                     default -> {
                     }
                 }
             }
             case Thunder -> {
                 switch (enemy.getElement()) {
-                    case Water -> elementValue = 1.5;
-                    case Earth -> elementValue = 0.5;
+                    case Water -> elementValue = 1.25;
+                    case Earth -> elementValue = 0.75;
                     default -> {
                     }
                 }
             }
             case Water -> {
                 switch (enemy.getElement()) {
-                    case Fire -> elementValue = 1.5;
-                    case Thunder -> elementValue = 0.5;
+                    case Fire -> elementValue = 1.25;
+                    case Thunder -> elementValue = 0.75;
                     default -> {
                     }
                 }

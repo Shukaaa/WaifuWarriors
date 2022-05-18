@@ -4,9 +4,10 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class PlayerChar extends Character{
+public class PlayerChar extends Character {
 
     private Gender Gender;
+
     public enum Gender {
         Male,
         Female,
@@ -32,24 +33,11 @@ public class PlayerChar extends Character{
 
     // DialogesBuilder
     public void attackRollBuilder(String[][] attacks) throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-
-        boolean inputWrong = true;
-        do {
-            System.out.println("Type in [start] to roll your Attack\n" +
-                    attacks[0][0] + " = " + attacks[0][1] + "  |  " + attacks[0][2] + "\n" +
-                    attacks[1][0] + " = " + attacks[1][1] + "  |  " + attacks[1][2] + "\n" +
-                    attacks[2][0] + " = " + attacks[2][1] + "  |  " + attacks[2][2] + "\n");
-
-            String input = scanner.nextLine().toLowerCase();
-
-            if (Objects.equals(input, "start")) {
-                inputWrong = false;
-                diceRollingDialog();
-            } else {
-                System.out.println("Wrong input, please try again\n");
-            }
-        } while (inputWrong);
+        System.out.println("Roll starting in 4 Seconds\n" +
+                attacks[0][0] + " = " + attacks[0][1] + "  |  " + attacks[0][2] + "\n" +
+                attacks[1][0] + " = " + attacks[1][1] + "  |  " + attacks[1][2] + "\n" +
+                attacks[2][0] + " = " + attacks[2][1] + "  |  " + attacks[2][2] + "\n");
+        TimeUnit.SECONDS.sleep(4);
     }
 
     public void diceRollingDialog() throws InterruptedException {
