@@ -17,10 +17,8 @@ public class Game {
         WatergunWale watergunwale = new WatergunWale();
         ClashRoyaleMage clashroyalemage = new ClashRoyaleMage();
 
-        System.out.println("\nDu triffst auf einen Clash Royale Magier Achtung!\n");
-        TimeUnit.SECONDS.sleep(2);
-        fight.fight(clashroyalemage);
+        fight.fight(dirtblock);
         System.out.println("\nOh nein das war es noch lange nicht!\n");
-        fight.fight(icefish);
+        fight.fight(dirtblock);
     }
 }

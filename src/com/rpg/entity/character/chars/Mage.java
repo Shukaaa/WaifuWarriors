@@ -2,6 +2,8 @@ package com.rpg.entity.character.chars;
 
 import com.rpg.entity.character.PlayerChar;
 
+import java.util.concurrent.TimeUnit;
+
 public class Mage extends PlayerChar {
 
     private int mana;
@@ -22,5 +24,13 @@ public class Mage extends PlayerChar {
     public void changeMana() {
         int lastATK = (int) getLastATK();
         setMana(getMana() + lastATK);
+    }
+
+    public void manaBuff(double num) throws InterruptedException {
+        double lastMana = getMana();
+        setMana((int) (getMana() + num));
+        System.out.println(getName() + " buffed his mana\n" +
+                "Mana before: " + lastMana + "  |  Mana after buff: " + Math.round(getMana()));
+        TimeUnit.SECONDS.sleep(1);
     }
 }

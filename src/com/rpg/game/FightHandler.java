@@ -6,6 +6,7 @@ import com.rpg.entity.character.NPC;
 import com.rpg.entity.character.PlayerChar;
 import com.rpg.entity.character.chars.mage.Megumin;
 import com.rpg.entity.character.chars.mage.Rem;
+import com.rpg.entity.character.chars.mage.ZeroTwo;
 import com.rpg.entity.character.npc_chars.*;
 
 import java.util.Scanner;
@@ -48,6 +49,9 @@ public class FightHandler {
                                 wrongInput2 = false;
                             }
                             case "zerotwo" -> {
+                                ZeroTwo zeroTwo = new ZeroTwo();
+                                startFight(enemy, zeroTwo);
+                                wrongInput2 = false;
 
                             }
                             case "asuna" -> {
@@ -190,6 +194,9 @@ public class FightHandler {
             return false;
         } else if (attacker instanceof Rem) {
             ((Rem) attacker).attack(enemy);
+            return false;
+        } else if (attacker instanceof ZeroTwo) {
+            ((ZeroTwo) attacker).attack(enemy);
             return false;
         }
         return true;

@@ -13,7 +13,7 @@ public class Rem extends Mage {
     private static final Random RANDOM = new Random();
 
     public Rem() {
-        super(0, 500, "Rem", 35, 10, 50, Gender.Female, 0, 0, charElement.Water);
+        super(0, 500, "Rem", 35, 5, 50, Gender.Female, 0, 0, charElement.Water);
     }
 
     // AttackMenu
@@ -65,20 +65,12 @@ public class Rem extends Mage {
             }
             case 8 -> {
                 attackAnnouncement("Morningstar-Spin");
-
-                int value = RANDOM.nextInt(1, 3 + 1);
-                for (int i = 1; i <= value; i++) {
-                    basicAttack(enemy);
-                    System.out.println("Hitted (" + i + ")");
-                    changeMana();
-                    TimeUnit.SECONDS.sleep(1);
-                }
-                System.out.println("Attack done! Connected attacks: " + value);
+                multiATK(enemy, 1, 3);
             }
             case 9, 10 -> {
                 attackAnnouncement("Maid Dress-Up");
-                setDEF(getDEF() + 2.5);
-                setIntelligence(getIntelligence() + 5);
+                defBuff(2.5);
+                intBuff(5);
                 basicAttack(enemy);
                 changeMana();
             }

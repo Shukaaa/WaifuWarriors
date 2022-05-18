@@ -26,12 +26,11 @@ public class PikachuMitEisenschwert extends NPC {
             case 8, 9 -> {
                 attackAnnouncement("Lightning");
                 basicAttack(enemy, 0.75);
-                enemy.setSuspend(getSuspend() + 1);
-                System.out.println("You got suspended for 1 Round");
+                suspend(enemy, 1);
             }
             case 10 -> {
                 attackAnnouncement("Diamond Sword");
-                setATK(getATK() * 1.25);
+                attackBuff(1.25);
                 basicAttack(enemy);
             }
         }

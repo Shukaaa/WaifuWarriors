@@ -52,7 +52,7 @@ public class Character extends Entity {
         if (ATK <= 0) {
             ATK = 1;
         }
-        return ATK;
+        return ATK * 1.25;
     }
 
     public double Crit() {
@@ -131,6 +131,57 @@ public class Character extends Entity {
         return elementValue;
     }
 
+    public void suspend(Character enemy, int rounds) throws InterruptedException {
+        enemy.setSuspend(getSuspend() + rounds);
+        System.out.println(enemy.name + " got suspended for " + rounds + "x Round");
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void attackBuff(double multiplier) throws InterruptedException {
+        lastATK = getATK();
+        setATK(getATK() * multiplier);
+        System.out.println(getName() + " buffed attack\n" +
+                "ATK before: " + lastATK + "  |  ATK after buff: " + Math.round(getATK()));
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void defBuff(double num) throws InterruptedException {
+        lastDEF = getDEF();
+        setDEF(getDEF() + num);
+        System.out.println(getName() + " buffed defense\n" +
+                "DEF before: " + lastDEF + "  |  DEF after buff: " + Math.round(getDEF()));
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void intBuff(double num) throws InterruptedException {
+        lastIntelligence = getIntelligence();
+        setIntelligence((int) (getIntelligence() + num));
+        System.out.println(getName() + " buffed intelligence\n" +
+                "DEF before: " + lastIntelligence + "  |  INT after buff: " + Math.round(getIntelligence()));
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void healing(double heal) throws InterruptedException {
+        double hpBefore = getHP();
+        setHP(getHP() + heal);
+        if (getHP() > getMaxHP()) {
+            setHP(getMaxHP());
+        }
+        System.out.println(getName() + " got healed by " + (getHP() - hpBefore) + "\n" +
+                "HP before: " + hpBefore + " HP after healing: " + getHP());
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void multiATK(Character enemy, int min, int max) throws InterruptedException {
+        int value = RANDOM.nextInt(min, max + 1);
+        for (int i = 1; i <= value; i++) {
+            basicAttack(enemy);
+            System.out.println("Hitted (" + i + ")");
+            TimeUnit.SECONDS.sleep(1);
+        }
+        System.out.println("Attack done! Connected attacks: " + value);
+    }
+
     // Basic Attack
     public void basicAttack(Character enemy) throws InterruptedException {
         this.basicAttack(enemy, 1);
@@ -200,11 +251,11 @@ public class Character extends Entity {
     }
 
     public double getATK() {
-        return ATK;
+        return Math.round(ATK);
     }
 
     public void setATK(double ATK) {
-        this.ATK = ATK;
+        this.ATK = Math.round(ATK);
     }
 
     public double getDEF() {

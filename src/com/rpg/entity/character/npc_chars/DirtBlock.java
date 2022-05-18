@@ -5,14 +5,14 @@ import com.rpg.entity.character.NPC;
 
 public class DirtBlock extends NPC {
     public DirtBlock() {
-        super(0, 300, "Dirt Block", 25, 10, 0, 0, charElement.Earth);
+        super(0, 350, "Dirt Block", 25, 10, 0, 0, charElement.Earth);
     }
 
     public void attack(Character enemy) throws InterruptedException {
         if (suspendCheck()) return;
 
         attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
-                {"8-9", "Dirty Dirt Shot", "Does a lot of damage (x1.25)"},
+                {"8-9", "Dirty Dirt Shot", "Does a lot of damage (x1.5)"},
                 {"10", "Trapped in a dirt house !!!", "You get suspended for 2 Rounds, damage -> x0.75"}});
 
         int dice = diceRoll();
@@ -25,13 +25,12 @@ public class DirtBlock extends NPC {
             }
             case 8, 9 -> {
                 attackAnnouncement("Dirty Dirt Shot");
-                basicAttack(enemy, 1.25);
+                basicAttack(enemy, 1.5);
             }
             case 10 -> {
                 attackAnnouncement("Heavy Attack");
-                basicAttack(enemy, 0.75);
-                enemy.setSuspend(getSuspend() + 2);
-                System.out.println("You got suspended for 2 Rounds");
+                basicAttack(enemy, 0.5);
+                suspend(enemy, 2);
             }
         }
     }

@@ -5,7 +5,7 @@ import com.rpg.entity.character.NPC;
 
 public class WatergunWale extends NPC {
     public WatergunWale() {
-        super(0, 800, "Watergun Wale", 10, 15, 5, 0, charElement.Water);
+        super(0, 800, "Watergun Wale", 15, 15, 5, 0, charElement.Water);
     }
 
     public void attack(Character enemy) throws InterruptedException {

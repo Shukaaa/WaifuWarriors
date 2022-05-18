@@ -3,16 +3,17 @@ package com.rpg.entity.character.chars.mage;
 import com.rpg.entity.character.Character;
 import com.rpg.entity.character.chars.Mage;
 
-
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Megumin extends Mage {
+public class ZeroTwo extends Mage {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Random RANDOM = new Random();
 
-    public Megumin() {
-        super(0, 400, "Megumin", 50, 5, 5, Gender.Female, 0, 0, charElement.Fire);
+    public ZeroTwo() {
+        super(0, 600, "Zero Two", 25, 12.5, 5, Gender.Female, 0, 0, charElement.Thunder);
     }
 
     // AttackMenu
@@ -50,8 +51,8 @@ public class Megumin extends Mage {
     // AttackMethod
     public void rollAttack(Character enemy) throws InterruptedException {
         attackRollBuilder(new String[][]{{"1-6", "Basic Attack", "Just Attack Damage"},
-                {"7-9", "Firewall", "0.5 * Attack + Enemy get suspend for 1 Round and can't attack"},
-                {"10", "Fireball", "Normal Attack + 1.15x more Damage for every round because of the fire damage"}});
+                {"7-8", "Darling Ohayo!", "Tactical Darling Ohayo Scream that stun enemies for 1 Round (Damage x0.3)"},
+                {"9-10", "FranXX Upgrade", "+69 HP & +69 Mana (Attack Damage goes on but x0.45)"}});
 
         int dice = diceRoll();
         System.out.println("You rolled a " + dice + "\n");
@@ -62,16 +63,17 @@ public class Megumin extends Mage {
                 basicAttack(enemy);
                 changeMana();
             }
-            case 7, 8, 9 -> {
-                attackAnnouncement("Firewall");
-                basicAttack(enemy, 0.5);
+            case 7, 8 -> {
+                attackAnnouncement("Darling Ohayo!");
                 suspend(enemy, 1);
+                basicAttack(enemy, 0.3);
                 changeMana();
             }
-            case 10 -> {
-                attackAnnouncement("Fireball");
-                attackBuff(1.15);
-                basicAttack(enemy);
+            case 9, 10 -> {
+                attackAnnouncement("FranXX Upgrade");
+                healing(69);
+                manaBuff(69);
+                basicAttack(enemy, 0.45);
                 changeMana();
             }
         }

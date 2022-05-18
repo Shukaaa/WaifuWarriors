@@ -5,7 +5,7 @@ import com.rpg.entity.character.NPC;
 
 public class ClashRoyaleMage extends NPC {
     public ClashRoyaleMage() {
-        super(0, 450, "Clash Royale Mage", 50, 5, 15, 0, charElement.Fire);
+        super(0, 450, "Clash Royale Mage", 42, 5, 15, 0, charElement.Fire);
     }
 
     public void attack(Character enemy) throws InterruptedException {
@@ -25,7 +25,7 @@ public class ClashRoyaleMage extends NPC {
             }
             case 8, 9 -> {
                 attackAnnouncement("Fireball Upgrade");
-                setATK(getATK() * 1.1);
+                attackBuff(1.1);
                 basicAttack(enemy);
             }
             case 10 -> {

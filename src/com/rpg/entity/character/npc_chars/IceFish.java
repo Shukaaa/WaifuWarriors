@@ -26,8 +26,7 @@ public class IceFish extends NPC {
             case 8, 9 -> {
                 attackAnnouncement("Freeze");
                 basicAttack(enemy, 0.5);
-                enemy.setSuspend(getSuspend() + 1);
-                System.out.println("You got suspended for 1 Round");
+                suspend(enemy, 1);
             }
             case 10 -> {
                 attackAnnouncement("Heavy Attack");
