@@ -18,7 +18,6 @@ public class Game {
         ClashRoyaleMage clashroyalemage = new ClashRoyaleMage();
 
         fight.fight(dirtblock);
-        System.out.println("\nOh nein das war es noch lange nicht!\n");
         fight.fight(dirtblock);
     }
 }

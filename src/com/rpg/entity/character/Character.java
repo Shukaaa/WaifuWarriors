@@ -172,10 +172,10 @@ public class Character extends Entity {
         TimeUnit.SECONDS.sleep(1);
     }
 
-    public void multiATK(Character enemy, int min, int max) throws InterruptedException {
+    public void multiATK(Character enemy, int min, int max, double multiplier) throws InterruptedException {
         int value = RANDOM.nextInt(min, max + 1);
         for (int i = 1; i <= value; i++) {
-            basicAttack(enemy);
+            basicAttack(enemy, multiplier);
             System.out.println("Hitted (" + i + ")");
             TimeUnit.SECONDS.sleep(1);
         }

@@ -4,9 +4,7 @@ import com.rpg.entity.character.Character;
 import com.rpg.entity.character.Character.charElement;
 import com.rpg.entity.character.NPC;
 import com.rpg.entity.character.PlayerChar;
-import com.rpg.entity.character.chars.mage.Megumin;
-import com.rpg.entity.character.chars.mage.Rem;
-import com.rpg.entity.character.chars.mage.ZeroTwo;
+import com.rpg.entity.character.chars.mage.*;
 import com.rpg.entity.character.npc_chars.*;
 
 import java.util.Scanner;
@@ -55,10 +53,15 @@ public class FightHandler {
 
                             }
                             case "asuna" -> {
+                                Asuna asuna = new Asuna();
+                                startFight(enemy, asuna);
+                                wrongInput2 = false;
 
                             }
                             case "raphtalia" -> {
-
+                                Raphtalia raphtalia = new Raphtalia();
+                                startFight(enemy, raphtalia);
+                                wrongInput2 = false;
                             }
                             case "hatsunemiku" -> {
 
@@ -181,6 +184,8 @@ public class FightHandler {
         } else if (enemy instanceof ClashRoyaleMage) {
             ((ClashRoyaleMage) enemy).attack(attacker);
             return false;
+        } else {
+            System.out.println("Error FightHandler: fightLoopEnemy");
         }
         return true;
     }
@@ -198,6 +203,17 @@ public class FightHandler {
         } else if (attacker instanceof ZeroTwo) {
             ((ZeroTwo) attacker).attack(enemy);
             return false;
+        } else if (attacker instanceof Asuna) {
+            ((Asuna) attacker).attack(enemy);
+            return false;
+        } else if (attacker instanceof Raphtalia) {
+            ((Raphtalia) attacker).attack(enemy);
+            return false;
+        } else if (attacker instanceof HatsuneMiku) {
+            ((HatsuneMiku) attacker).attack(enemy);
+            return false;
+        } else {
+            System.out.println("Error FightHandler: fightLoopChar");
         }
         return true;
     }

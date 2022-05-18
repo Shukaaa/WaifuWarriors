@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 public class Rem extends Mage {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final Random RANDOM = new Random();
 
     public Rem() {
         super(0, 500, "Rem", 35, 5, 50, Gender.Female, 0, 0, charElement.Water);
@@ -65,7 +64,7 @@ public class Rem extends Mage {
             }
             case 8 -> {
                 attackAnnouncement("Morningstar-Spin");
-                multiATK(enemy, 1, 3);
+                multiATK(enemy, 1, 3, 1);
             }
             case 9, 10 -> {
                 attackAnnouncement("Maid Dress-Up");

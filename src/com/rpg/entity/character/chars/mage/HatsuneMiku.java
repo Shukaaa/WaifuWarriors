@@ -3,16 +3,15 @@ package com.rpg.entity.character.chars.mage;
 import com.rpg.entity.character.Character;
 import com.rpg.entity.character.chars.Mage;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class ZeroTwo extends Mage {
+public class HatsuneMiku extends Mage {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public ZeroTwo() {
-        super(0, 600, "Zero Two", 25, 12.5, 5, Gender.Female, 0, 0, charElement.Thunder);
+    public HatsuneMiku() {
+        super(0, 500, "Hatsune Miku", 30, 5, 5, Gender.Female, 0, 0, charElement.Earth);
     }
 
     // AttackMenu
@@ -50,8 +49,8 @@ public class ZeroTwo extends Mage {
     // AttackMethod
     public void rollAttack(Character enemy) throws InterruptedException {
         attackRollBuilder(new String[][]{{"1-6", "Basic Attack", "Just Attack Damage"},
-                {"7-8", "Darling Ohayo!", "Tactical Darling Ohayo Scream that stun enemies for 1 Round (Damage x0.3)"},
-                {"9-10", "FranXX Upgrade", "+69 HP & +69 Mana (Attack Damage goes on but x0.45)"}});
+                {"7-8", "Scream", "Attack with (1.25x) + enemy get suspended 1 Round"},
+                {"9-10", "Idol Gift", "+420 Mana & Normal Attack"}});
 
         int dice = diceRoll();
         System.out.println("You rolled a " + dice + "\n");
@@ -63,16 +62,16 @@ public class ZeroTwo extends Mage {
                 changeMana();
             }
             case 7, 8 -> {
-                attackAnnouncement("Darling Ohayo!");
+                attackAnnouncement("Scream");
+                basicAttack(enemy, 1.25);
                 suspend(enemy, 1);
-                basicAttack(enemy, 0.3);
                 changeMana();
             }
             case 9, 10 -> {
-                attackAnnouncement("FranXX Upgrade");
-                healing(69);
-                manaBuff(69);
-                basicAttack(enemy, 0.45);
+                attackAnnouncement("Idol Gift");
+                manaBuff(420);
+                attackBuff(1.25);
+                basicAttack(enemy);
                 changeMana();
             }
         }

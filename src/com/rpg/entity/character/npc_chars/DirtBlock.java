@@ -5,7 +5,7 @@ import com.rpg.entity.character.NPC;
 
 public class DirtBlock extends NPC {
     public DirtBlock() {
-        super(0, 350, "Dirt Block", 25, 10, 0, 0, charElement.Earth);
+        super(0, 400, "Dirt Block", 25, 10, 0, 0, charElement.Earth);
     }
 
     public void attack(Character enemy) throws InterruptedException {
@@ -13,7 +13,7 @@ public class DirtBlock extends NPC {
 
         attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
                 {"8-9", "Dirty Dirt Shot", "Does a lot of damage (x1.5)"},
-                {"10", "Trapped in a dirt house !!!", "You get suspended for 2 Rounds, damage -> x0.75"}});
+                {"10", "Trapped in a dirt house !!!", "You get suspended for 2 Rounds, Normal Damage"}});
 
         int dice = diceRoll();
         System.out.println(getName() + "rolled a " + dice + "\n");
@@ -29,7 +29,7 @@ public class DirtBlock extends NPC {
             }
             case 10 -> {
                 attackAnnouncement("Heavy Attack");
-                basicAttack(enemy, 0.5);
+                basicAttack(enemy);
                 suspend(enemy, 2);
             }
         }
