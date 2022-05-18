@@ -25,7 +25,7 @@ public class Character extends Entity {
         Thunder,
         Water
     }
-    private charElement element;
+    private final charElement element;
 
     public Character(int posX, double HP, String name, double ATK, double DEF, int intelligence, int suspend, charElement element) {
         super(posX, HP);
@@ -206,7 +206,7 @@ public class Character extends Entity {
     }
 
     // Dice Functions
-    public int diceRoll() {
+    public int diceRoll() throws InterruptedException {
         int min = 1;
         int max = 10;
 
@@ -214,7 +214,19 @@ public class Character extends Entity {
         if (value > 10) {
             value = 1;
         }
+
+        diceRollingDialog();
+
         return value;
+    }
+
+    public void diceRollingDialog() throws InterruptedException {
+        System.out.println("Rolling started.");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("Rolling started..");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("Rolling started...");
+        TimeUnit.SECONDS.sleep(1);
     }
 
     public boolean suspendCheck() {
@@ -286,23 +298,7 @@ public class Character extends Entity {
         return element;
     }
 
-    public void setElement(charElement element) {
-        this.element = element;
-    }
-
     public double getLastDEF() {
         return lastDEF;
-    }
-
-    public void setLastDEF(double lastDEF) {
-        this.lastDEF = lastDEF;
-    }
-
-    public int getLastIntelligence() {
-        return lastIntelligence;
-    }
-
-    public void setLastIntelligence(int lastIntelligence) {
-        this.lastIntelligence = lastIntelligence;
     }
 }

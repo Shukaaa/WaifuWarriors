@@ -12,14 +12,6 @@ public class Entity {
         this.HP = HP;
     }
 
-    public int getPosX() {
-        return posX;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
     public double getMaxHP() {
         return maxHP;
     }
