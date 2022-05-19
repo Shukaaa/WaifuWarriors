@@ -17,6 +17,7 @@ public class Character extends Entity {
     private double lastATK;
     private double lastDEF;
     private int lastIntelligence;
+    private double minATK;
     public enum charElement {
         Fire,
         Ice,
@@ -37,6 +38,7 @@ public class Character extends Entity {
         this.intelligence = intelligence;
         this.suspend = suspend;
         this.element = element;
+        this.minATK = ATK;
     }
 
     // AttackCalc Functions
@@ -296,5 +298,9 @@ public class Character extends Entity {
 
     public double getLastDEF() {
         return lastDEF;
+    }
+
+    public double getMinATK() {
+        return minATK;
     }
 }

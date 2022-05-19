@@ -12,7 +12,7 @@ public class IceFish extends NPC {
         if (suspendCheck()) return;
 
             attackRollBuilder(new String[][]{{"1-7", "Basic Attack", "Does normal damage"},
-                    {"8-9", "Freeze", "Freezes you for 1 Round + x0.5 Damage"},
+                    {"8-9", "Freeze", "Freezes you for 1 Round but still doing Damage"},
                     {"10", "Heavy Attack", "Does a lot of damage"}});
 
         int dice = diceRoll();
@@ -25,7 +25,7 @@ public class IceFish extends NPC {
             }
             case 8, 9 -> {
                 attackAnnouncement("Freeze");
-                basicAttack(enemy, 0.5);
+                basicAttack(enemy);
                 suspend(enemy, 1);
             }
             case 10 -> {

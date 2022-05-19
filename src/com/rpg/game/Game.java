@@ -18,7 +18,6 @@ public class Game {
         WatergunWale watergunwale = new WatergunWale();
         ClashRoyaleMage clashroyalemage = new ClashRoyaleMage();
 
-        fight.fight(icefish);
-        fight.fight(dirtblock);
+        fight.fight(pikachu);
     }
 }

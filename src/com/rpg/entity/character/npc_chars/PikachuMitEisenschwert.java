@@ -30,7 +30,7 @@ public class PikachuMitEisenschwert extends NPC {
             }
             case 10 -> {
                 attackAnnouncement("Diamond Sword");
-                attackBuff(1.25);
+                setATK(getMinATK() * 1.25);
                 basicAttack(enemy);
             }
         }
