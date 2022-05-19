@@ -27,15 +27,13 @@ public class FightHandler {
                 case "choose" -> {
                     boolean wrongInput2 = true;
                     do {
-                        System.out.println("""
-                                You can choose these character:
-                                [megumin]  |  Element: Fire
-                                [rem]  |  Element: Wasser
-                                [zerotwo]  |  Element: Thunder
-                                [asuna]  |  Element: Wind
-                                [raphtalia]  |  Element: Earth
-                                [hatsunemiku]  |  Element: Ice
-                                """);
+                        System.out.println("You can choose these character:\n" +
+                                "[megumin]  |  Element: Fire\n" +
+                                "[rem]  |  Element: Wasser\n" +
+                                "[zerotwo]  |  Element: Thunder\n" +
+                                "[asuna]  |  Element: Wind\n" +
+                                "[raphtalia]  |  Element: Earth\n" +
+                                "[hatsunemiku]  |  Element: Ice\n");
                         input = scanner.nextLine().toLowerCase();
                         switch (input) {
                             case "megumin" -> {
@@ -76,7 +74,9 @@ public class FightHandler {
                     } while (wrongInput2);
                     wrongInput = false;
                 }
-                case "element" -> elementHelper(enemy);
+                case "element" -> {
+                    elementHelper(enemy);
+                }
                 default -> {
                     System.out.println("Wrong input");
                     TimeUnit.SECONDS.sleep(1);
