@@ -9,7 +9,7 @@ public class Character extends Entity {
 
     private static final Random RANDOM = new Random();
 
-    private String name;
+    private final String name;
     private double ATK;
     private double DEF;
     private int intelligence;
@@ -17,7 +17,7 @@ public class Character extends Entity {
     private double lastATK;
     private double lastDEF;
     private int lastIntelligence;
-    private double minATK;
+    private final double minATK;
     public enum charElement {
         Fire,
         Ice,
@@ -26,7 +26,7 @@ public class Character extends Entity {
         Thunder,
         Water
     }
-    private final charElement element;
+    private charElement element;
 
     public Character(int posX, double HP, String name, double ATK, double DEF, int intelligence, int suspend, charElement element) {
         super(posX, HP);
@@ -296,6 +296,10 @@ public class Character extends Entity {
         return element;
     }
 
+    public void setElement(charElement element) {
+        this.element = element;
+    }
+
     public double getLastDEF() {
         return lastDEF;
     }
@@ -303,4 +307,6 @@ public class Character extends Entity {
     public double getMinATK() {
         return minATK;
     }
+
+
 }
